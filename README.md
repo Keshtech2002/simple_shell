@@ -1,9 +1,9 @@
-#Simple shell Project 
+# Simple shell Project 
 
-###TASK
+### TASK
 Building our own shell using C language
 
-###SYNOPSIS
+### SYNOPSIS
 
 **Interactive mode**
 simple_shell
@@ -13,7 +13,7 @@ commands [...] | simple_shell
 simple_shell [filename]
 
 
-###DESCRIPTION
+### DESCRIPTION
 
 simple_shell is a simple command line interpreter that works both in interactive and none interactive mode.
 
@@ -21,7 +21,7 @@ In the interactive mode, the shell request of input and run the commands entered
 
 In the non-interactive mode, output of other programs can be piped to it or it can be passed a file containing lines of commands which it excute by line until end of file is reached and the shell exits.
 
-###BUILT-IN COMMANDS
+### BUILT-IN COMMANDS
 
 **exit [STATUS]**
 exits the shell, returning the integer STATUS to the parent process, if provided, or 0 if not.
@@ -47,7 +47,7 @@ with only names as argument, it prints only the alias specified by name.
 Defines an alias for each name whose value is given. If an alias for name exists, replaces its value with value.
 
 
-###EXIT VALUES
+### EXIT VALUES
 
 **0:**
 if in interactive mode or all commands were executed successfully in non-interactive mode.
@@ -59,7 +59,7 @@ if all commands could not be run successfully in non-interactive mode.
 an integer exit value passed as an argument to the exit builtin command.
 
 
-###How to Install and Compile 
+### How to Install and Compile 
 To have this repository and its content, you must execute the following on your terminal:
 
 ```
@@ -77,14 +77,14 @@ $ |
 
 ```
 
-###NOTE
+### NOTE
 If you want to review the manual of our Simple Shell function you can execute in your terminal:
 
 ```
 $ man ./man_1_simple_shell
 ```
 
-###Environment
+### Environment
 
 - Language: C
 - OS: Ubuntu 14.04 LTS
@@ -92,7 +92,7 @@ $ man ./man_1_simple_shell
 - Style guidelines: [Betty style] (https://github.com/holbertonschool/Betty/wiki) and [Betty-doc] (https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl)
 
 
-###Copyright
+### Copyright
 *Copyright (c) 2022 Keshinro Mus'ab, Nnena Kalu.
 - Keshinro Mus'ab - keshtech2002@gmail.com
 - Nnena Kalu - nnennakalualie@yahoo.com
