@@ -89,7 +89,7 @@ $ man ./man_1_simple_shell
 - Language: C
 - OS: Ubuntu 14.04 LTS
 - Compiler: gcc 4.8.4
-- Style guidelines: [Betty style] (https://github.com/holbertonschool/Betty/wiki) and [Betty-doc] (https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl)
+- Style guidelines: [Betty style](https://github.com/holbertonschool/Betty/wiki) and [Betty-doc](https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl)
 
 
 ### Copyright
