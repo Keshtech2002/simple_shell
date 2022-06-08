@@ -96,6 +96,7 @@ $ man ./man_1_simple_shell
 *Copyright (c) 2022 Keshinro Mus'ab, Nnena Kalu.
 - Keshinro Mus'ab - keshtech2002@gmail.com
 - Nnena Kalu - nnennakalualie@yahoo.com
+
 Written as part of the ALX Software Engineering training program. It is free to use, modify and redistribute. There is NO WARRANTY whatsoever.*
 
 
