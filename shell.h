@@ -1,50 +1,97 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 #include <sys/wait.h>
+#include <wait.h>
+#include <errno.h>
 #include <fcntl.h>
-#include <string.h>
+#include <dirent.h>
 #include <signal.h>
 
+#define BUFSIZE 1024
 extern char **environ;
 
-/* PATH Shell Functions */
+/**
+  * struct builtin_commands - stuct for function pointers to builtin commands
+  * @cmd_str: commands (env, cd, alias, history)
+  * @fun: function
+  */
+typedef struct builtin_commands
+{
+	char *cmd_str;
+	int (*fun)();
+} builtin_t;
 
-/* Program Flow */
 
-int prompt(void);
-char *_read(void);
-char *_fullpathbuffer(char **av, char *PATH, char *copy);
-int checkbuiltins(char **av, char *buffer, int exitstatus);
-int _forkprocess(char **av, char *buffer, char *fullpathbuffer);
+/**
+ * struct env_path - linked list for environmental variables
+ * @str: holds environmental variable string
+ * @len: holds the length of the string
+ * @next: points to next node
+ */
+typedef struct env_path
+{
+	char *str;
+	unsigned int len;
+	struct env_path *next;
 
-/* String Helper Functions */
+} list_t;
 
-char *_strdup(char *str);
-int _splitstring(char *str);
-int _strcmp(const char *s1, const char *s2);
-char *_strcat(char *dest, char *src);
+/* In builtin.c */
+int (*_builtin(char *cmd))();
+int _exit_builtin(char **tokens, list_t *linkedlist_path, char *buffer);
+int _cd(char **tokens);
+int _alias(void);
+int _history(void);
+
+/* env_func.c */
+char *_getenv(char *name);
+int _setenv(char **tokens);
+int _unsetenv(char **tokens);
+int current_env(char **tokens, list_t *environment);
+
+/* linkedlist.c */
+list_t *add_node(list_t **head, char *str, unsigned int len);
+list_t *path_list(void);
+list_t *environ_list(void);
+char *_which(char *cmd, list_t *linkedlist_path);
+void free_list(list_t *head);
+
+/* execute.c */
+void execute(char *argv[], list_t *linkedlist_path, char **av);
+char **split_line(char *line);
+
+/* memory.c */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void free_double_ptr(char **str);
+void __exit(char **str, list_t *env);
+
+/* strings2.c*/
+char *_strcpy(char *dest, char *src);
+int _putchar(char c);
+void _puts(char *str);
+int _isnumber(int c);
 int _strlen(char *s);
 
-/*Tokenize & PATH Helper Functions*/
+/* strtok.c */
+char *_strchr(char *s, char c);
+unsigned int _strspn(char *s, char *accept);
+char *_strpbrk(char *s, char *delims);
+char *_strtok(char *s, char *delim);
 
-char **tokenize(char *buffer);
-int _splitPATH(char *str);
-int _PATHstrcmp(const char *s1, const char *s2);
-char *_concat(char *tmp, char **av, char *tok);
+/* string1.c */
+int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, size_t bytes);
+char *_strcat(char *dest, char *src);
+char *_strdup(char *src);
+int _atoi(char *s);
 
-/*Other Helper Funcs*/
 
-char *_getenv(const char *name);
-int _env(void);
-void _puts(char *str);
-int _putchar(char c);
-char *_memset(char *s, char b, unsigned int n);
-
-#endif /* SHELL_H */
+#endif
